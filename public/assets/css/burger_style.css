@@ -1,0 +1,22 @@
+h2 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+button#submitNewBurger {
+    margin-top: 20px;
+}
+
+img#burgerImage {
+    max-width: 100%;
+    max-height: 150px;
+}
+
+input#inputBurgerName {
+    text-align: center;
+}
+
+.burger-list {
+    text-align: left;
+    margin-bottom: 30px;
+}

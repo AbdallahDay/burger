@@ -10,24 +10,6 @@ function printQuestionMarks(num) {
     return arr.toString();
 };
 
-function executeQuery(queryString, callback) {
-    console.log(queryString);
-
-    connection.query(queryString, (err, result) => {
-        if (err) throw err;
-        callback(result);
-    });
-};
-
-function executeQuery(queryString, vals, callback) {
-    console.log(queryString);
-
-    connection.query(queryString, vals, (err, result) => {
-        if (err) throw err;
-        callback(result);
-    });
-};
-
 function objToSql(ob) {
     let arr = [];
   
@@ -54,17 +36,35 @@ const orm = {
     all: (table, callback) => {
         let queryString = `SELECT * FROM ${table};`;
         
-        executeQuery(queryString, callback);
+        console.log(queryString);
+
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+    
+            callback(result);
+        });
     },
     create: (table, cols, vals, callback) => {
         let queryString = `INSERT INTO ${table} (${cols.toString()}) VALUES (${printQuestionMarks(vals.length)});`;
 
-        executeQuery(queryString, vals, callback);
+        console.log(queryString);
+
+        connection.query(queryString, vals, (err, result) => {
+            if (err) throw err;
+            
+            callback(result);
+        });
     },
     update: (table, objColVals, condition, callback) => {
         let queryString = `UPDATE ${table} SET ${objToSql(objColVals)} WHERE ${condition}`;
 
-        executeQuery(queryString, callback);
+        console.log(queryString);
+
+        connection.query(queryString, (err, result) => {
+            if (err) throw err;
+    
+            callback(result);
+        });
     }
 };
 
